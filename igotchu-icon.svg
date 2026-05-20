@@ -1,0 +1,13 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="iGotchu app icon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f1a2e"/>
+      <stop offset="1" stop-color="#0b1120"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <circle cx="256" cy="250" r="150" fill="none" stroke="#1d2c49" stroke-width="10"/>
+  <circle cx="256" cy="250" r="108" fill="none" stroke="#23355a" stroke-width="10"/>
+  <path d="M256 116 C198 116 156 160 156 218 C156 290 256 392 256 392 C256 392 356 290 356 218 C356 160 314 116 256 116 Z" fill="#37e0a6"/>
+  <path d="M200 222 C200 204 215 192 235 204 L256 218 L277 204 C297 192 312 204 312 222 C312 252 256 290 256 290 C256 290 200 252 200 222 Z" fill="#0b1120"/>
+</svg>
