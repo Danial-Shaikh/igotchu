@@ -62,7 +62,8 @@
   .logo .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(55,224,166,.18);animation:pulse 2.4s infinite;}
   @keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(55,224,166,.18)}50%{box-shadow:0 0 0 8px rgba(55,224,166,.03)}}
   .circle-pill{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--ink-dim);
-    background:var(--panel);border:1px solid var(--line);padding:7px 11px;border-radius:999px;display:flex;align-items:center;gap:7px;}
+    background:var(--panel);border:1px solid var(--line);padding:7px 11px;border-radius:999px;display:flex;align-items:center;gap:7px;cursor:pointer;}
+  .circle-pill b{color:var(--accent);font-weight:500;}
   .iconbtn{width:38px;height:38px;border-radius:12px;border:1px solid var(--line);background:var(--panel);
     color:var(--ink);display:grid;place-items:center;font-size:17px;cursor:pointer;}
   .iconbtn:active{transform:scale(.94);}
@@ -75,7 +76,6 @@
   .leaflet-control-attribution a{color:#7d93bd!important;}
   .leaflet-bar a{background:var(--panel)!important;color:var(--ink)!important;border-color:var(--line)!important;}
 
-  /* member markers */
   .member-pin{position:relative;}
   .member-pin .avatar{
     width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
@@ -90,7 +90,6 @@
   .place-marker{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;
     background:var(--panel);border:1px solid var(--line);font-size:16px;box-shadow:0 4px 12px rgba(0,0,0,.4);}
 
-  /* floating quick controls on map */
   .map-fabs{position:absolute;right:14px;bottom:calc(50% + 6px);z-index:500;display:flex;flex-direction:column;gap:10px;}
   .fab{width:46px;height:46px;border-radius:14px;background:rgba(18,29,51,.9);backdrop-filter:blur(8px);
     border:1px solid var(--line);color:var(--ink);display:grid;place-items:center;font-size:19px;cursor:pointer;
@@ -119,7 +118,6 @@
 
   .scroll{overflow-y:auto;padding:4px 14px max(18px,env(safe-area-inset-bottom));-webkit-overflow-scrolling:touch;}
 
-  /* member rows */
   .member{display:flex;align-items:center;gap:13px;padding:12px;border:1px solid var(--line);
     background:var(--panel);border-radius:16px;margin-bottom:10px;cursor:pointer;transition:.15s;}
   .member:active{transform:scale(.99);}
@@ -140,7 +138,6 @@
   .m-batt.low{color:var(--warn);}
   .m-time{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-top:4px;}
 
-  /* places list */
   .place{display:flex;align-items:center;gap:13px;padding:12px;border:1px solid var(--line);
     background:var(--panel);border-radius:16px;margin-bottom:10px;}
   .place .pico{width:44px;height:44px;border-radius:13px;flex:none;display:grid;place-items:center;font-size:20px;
@@ -157,23 +154,24 @@
     display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:6px;}
   .add-place-btn:active{background:var(--panel);}
 
-  /* alerts list */
   .alert-row{display:flex;align-items:flex-start;gap:11px;padding:11px 12px;border-bottom:1px solid var(--line);}
   .alert-row .ai{width:34px;height:34px;border-radius:10px;flex:none;display:grid;place-items:center;font-size:15px;}
   .ai.arrive{background:rgba(55,224,166,.12);color:var(--accent);}
   .ai.leave{background:rgba(255,178,77,.12);color:var(--warn);}
   .ai.sos{background:rgba(255,93,108,.14);color:var(--danger);}
+  .ai.join{background:rgba(43,212,255,.12);color:var(--accent-2);}
   .a-txt{flex:1;font-size:13px;line-height:1.5;}
   .a-txt b{font-weight:600;}
   .a-time{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-top:2px;}
-  .empty{text-align:center;color:var(--ink-faint);font-size:13px;padding:30px 10px;font-family:var(--mono);}
+  .empty{text-align:center;color:var(--ink-faint);font-size:13px;padding:30px 10px;font-family:var(--mono);line-height:1.7;}
 
   /* ---------- Modals ---------- */
   .modal-bg{position:fixed;inset:0;background:rgba(4,8,16,.72);backdrop-filter:blur(6px);z-index:2000;
     display:none;align-items:flex-end;justify-content:center;}
   .modal-bg.open{display:flex;}
   .modal{width:100%;max-width:520px;background:var(--bg-2);border:1px solid var(--line);
-    border-radius:22px 22px 0 0;padding:20px 18px max(22px,env(safe-area-inset-bottom));animation:slideup .3s cubic-bezier(.4,0,.2,1);}
+    border-radius:22px 22px 0 0;padding:20px 18px max(22px,env(safe-area-inset-bottom));animation:slideup .3s cubic-bezier(.4,0,.2,1);
+    max-height:90vh;overflow-y:auto;}
   @keyframes slideup{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
   .modal h3{margin:0 0 4px;font-size:18px;}
   .modal p.hint{margin:0 0 16px;font-size:12.5px;color:var(--ink-dim);line-height:1.5;}
@@ -182,11 +180,12 @@
   .field input,.field select{width:100%;padding:13px;border-radius:12px;border:1px solid var(--line);
     background:var(--panel);color:var(--ink);font-family:var(--disp);font-size:15px;}
   .field input:focus,.field select:focus{outline:none;border-color:var(--accent);}
+  .field input:disabled{color:var(--ink-faint);}
   .emoji-row{display:flex;gap:8px;flex-wrap:wrap;}
   .emoji-row .e{width:46px;height:46px;border-radius:12px;border:1px solid var(--line);background:var(--panel);
     font-size:21px;display:grid;place-items:center;cursor:pointer;}
   .emoji-row .e.on{border-color:var(--accent);background:rgba(55,224,166,.1);}
-  .color-row{display:flex;gap:9px;}
+  .color-row{display:flex;gap:9px;flex-wrap:wrap;}
   .color-row .c{width:34px;height:34px;border-radius:50%;cursor:pointer;border:3px solid transparent;}
   .color-row .c.on{border-color:#fff;}
   .row2{display:flex;gap:10px;}
@@ -197,15 +196,17 @@
   .btn.ghost{background:var(--panel);color:var(--ink);border:1px solid var(--line);}
   .btn.danger{background:rgba(255,93,108,.14);color:var(--danger);border:1px solid rgba(255,93,108,.3);}
   .btn:active{transform:scale(.98);}
-  .modal .x{position:absolute;}
 
-  /* SOS */
+  .code-box{background:var(--panel);border:1px dashed var(--accent);border-radius:14px;padding:16px;text-align:center;margin-bottom:14px;cursor:pointer;}
+  .code-box .lbl{font-family:var(--mono);font-size:10px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:1px;}
+  .code-box .code{font-family:var(--mono);font-size:30px;font-weight:500;color:var(--accent);letter-spacing:5px;margin:6px 0;}
+  .code-box .cp{font-size:11px;color:var(--ink-faint);}
+
   .sos-fab{position:fixed;bottom:calc(52% + 6px);left:14px;z-index:500;}
   .sos-btn{width:54px;height:54px;border-radius:50%;background:var(--danger);color:#fff;border:0;font-weight:800;
     font-family:var(--mono);font-size:13px;letter-spacing:.5px;cursor:pointer;box-shadow:0 6px 20px rgba(255,93,108,.45);}
   .sos-btn:active{transform:scale(.92);}
 
-  /* toast */
   .toast-wrap{position:fixed;top:max(14px,env(safe-area-inset-top));left:0;right:0;z-index:3000;
     display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none;padding:0 14px;}
   .toast{max-width:480px;width:100%;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);
@@ -219,20 +220,28 @@
   .toast .tt b{font-weight:600;}
 
   /* onboarding */
-  .onb{position:fixed;inset:0;z-index:4000;background:
+  .onb{position:fixed;inset:0;z-index:4000;overflow-y:auto;background:
       radial-gradient(900px 500px at 70% 0%,rgba(43,212,255,.12),transparent 60%),
       radial-gradient(800px 600px at 0% 100%,rgba(55,224,166,.1),transparent 55%),var(--bg);
     display:flex;flex-direction:column;justify-content:center;padding:34px 26px;max-width:520px;margin:0 auto;}
   .onb .badge{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;}
   .onb h1{font-size:42px;margin:10px 0 6px;font-weight:700;letter-spacing:-1px;}
   .onb h1 b{color:var(--accent);}
-  .onb .tag{color:var(--ink-dim);font-size:15px;line-height:1.55;margin-bottom:26px;max-width:340px;}
-  .onb .feat{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px;}
+  .onb .tag{color:var(--ink-dim);font-size:15px;line-height:1.55;margin-bottom:24px;max-width:340px;}
+  .onb .feat{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;}
   .onb .feat .fi{width:40px;height:40px;border-radius:12px;background:var(--panel);border:1px solid var(--line);
     display:grid;place-items:center;font-size:18px;flex:none;}
   .onb .feat .fx b{font-weight:600;font-size:14px;display:block;}
   .onb .feat .fx span{font-size:12.5px;color:var(--ink-dim);}
   .onb .field{margin-top:8px;}
+  .onb .modeswitch{display:flex;gap:10px;margin:18px 0 6px;}
+  .onb .modeswitch button{flex:1;padding:13px;border-radius:13px;border:1px solid var(--line);background:var(--panel);
+    color:var(--ink-dim);font-family:var(--disp);font-weight:600;font-size:13.5px;cursor:pointer;}
+  .onb .modeswitch button.on{border-color:var(--accent);background:rgba(55,224,166,.1);color:var(--ink);}
+
+  .warn-banner{background:rgba(255,178,77,.1);border:1px solid rgba(255,178,77,.3);border-radius:12px;
+    padding:11px 13px;font-size:12px;color:var(--warn);line-height:1.5;margin-bottom:14px;}
+  .warn-banner b{font-weight:600;}
 </style>
 </head>
 <body>
@@ -240,7 +249,7 @@
 <div class="app" id="app" style="display:none;">
   <div class="topbar">
     <div class="logo"><span class="dot"></span>i<b>Gotchu</b></div>
-    <div class="circle-pill" id="circlePill">👪 <span id="circleName">Family</span></div>
+    <div class="circle-pill" id="circlePill" title="Tap to view circle code">👪 <span id="circleName">Circle</span> · <b id="circleCode">—</b></div>
     <button class="iconbtn" id="settingsBtn" title="Settings">⚙︎</button>
   </div>
 
@@ -275,33 +284,49 @@
 <div class="onb" id="onb">
   <div class="badge">006 · Mobile · Family Safety</div>
   <h1>i<b>Gotchu</b></h1>
-  <div class="tag">See where your family is in real time. Get notified when they arrive or leave the places that matter.</div>
+  <div class="tag">See where your circle is in real time. Share a code, and friends who join show up live on your map.</div>
 
-  <div class="feat"><div class="fi">🗺️</div><div class="fx"><b>Live map</b><span>Everyone in your circle, one screen</span></div></div>
-  <div class="feat"><div class="fi">📍</div><div class="fx"><b>Safe places</b><span>Tag Home, School, Work & more</span></div></div>
+  <div class="feat"><div class="fi">🗺️</div><div class="fx"><b>Live map</b><span>Real GPS from every member's phone</span></div></div>
+  <div class="feat"><div class="fi">🔗</div><div class="fx"><b>Invite by code</b><span>Friends join your circle with one code</span></div></div>
   <div class="feat"><div class="fi">🔔</div><div class="fx"><b>Arrive / leave alerts</b><span>Know the moment they get there</span></div></div>
 
-  <div class="field" style="margin-top:24px;">
+  <div id="onbConfigWarn" class="warn-banner" style="display:none;margin-top:18px;">
+    <b>Setup needed for live sync:</b> open <b>FIREBASE-SETUP.md</b> (about 5 min, free) and paste your config into the app. Until then you can use it solo on this device.
+  </div>
+
+  <div class="modeswitch" id="onbMode">
+    <button data-mode="create" class="on">Create a circle</button>
+    <button data-mode="join">Join a circle</button>
+  </div>
+
+  <div class="field">
     <label>Your name</label>
     <input id="onbName" placeholder="e.g. Danial" maxlength="18" />
   </div>
-  <div class="field">
+  <div class="field" id="onbCircleField">
     <label>Circle name</label>
-    <input id="onbCircle" placeholder="e.g. The Shaikh Family" maxlength="24" value="My Family" />
+    <input id="onbCircle" placeholder="e.g. The Crew" maxlength="24" value="My Circle" />
+  </div>
+  <div class="field" id="onbCodeField" style="display:none;">
+    <label>Circle code (from your friend)</label>
+    <input id="onbCode" placeholder="e.g. 7K2QPX" maxlength="6" style="text-transform:uppercase;letter-spacing:3px;font-family:var(--mono);" />
   </div>
   <button class="btn primary" id="onbStart">Create my circle →</button>
-  <p class="hint" style="margin-top:14px;text-align:center;">Your data stays on this device. Allow location access when asked to put yourself on the map.</p>
+  <p class="hint" style="margin-top:14px;text-align:center;">Allow location access when asked to put yourself on the map. You control when you share.</p>
 </div>
 
-<!-- Add / Edit member modal -->
-<div class="modal-bg" id="memberModal">
+<!-- Invite modal -->
+<div class="modal-bg" id="inviteModal">
   <div class="modal">
-    <h3 id="mmTitle">Add family member</h3>
-    <p class="hint">Add the people in your circle. In this demo their movement is simulated; the real app would sync from their phones.</p>
-    <div class="field"><label>Name</label><input id="mmName" maxlength="18" placeholder="Name" /></div>
-    <div class="field"><label>Avatar color</label><div class="color-row" id="mmColors"></div></div>
-    <button class="btn primary" id="mmSave">Save member</button>
-    <button class="btn ghost" id="mmCancel" style="margin-top:8px;">Cancel</button>
+    <h3>Invite friends</h3>
+    <p class="hint">Share this code. Anyone who opens iGotchu, taps “Join a circle” and enters it will appear live on your map (once they turn on location sharing).</p>
+    <div class="code-box" id="inviteCodeBox">
+      <div class="lbl">Your circle code</div>
+      <div class="code" id="inviteCode">—</div>
+      <div class="cp">Tap to copy</div>
+    </div>
+    <button class="btn primary" id="inviteShare">Share invite link</button>
+    <button class="btn ghost" id="inviteCancel" style="margin-top:8px;">Close</button>
   </div>
 </div>
 
@@ -309,7 +334,7 @@
 <div class="modal-bg" id="placeModal">
   <div class="modal">
     <h3>Add a place</h3>
-    <p class="hint">Drop a safe place. You'll get an alert when a circle member arrives or leaves its zone.</p>
+    <p class="hint">Drop a safe place. You'll get an alert when a member arrives or leaves its zone.</p>
     <div class="field"><label>Place name</label><input id="plName" maxlength="22" placeholder="e.g. Home" /></div>
     <div class="field"><label>Icon</label><div class="emoji-row" id="plEmoji"></div></div>
     <div class="field">
@@ -339,15 +364,14 @@
 <div class="modal-bg" id="settingsModal">
   <div class="modal">
     <h3>Settings</h3>
-    <div class="field"><label>Circle name</label><input id="setCircle" maxlength="24" /></div>
     <div class="field"><label>Your name</label><input id="setName" maxlength="18" /></div>
-    <div class="field"><label>Simulate family movement (demo)</label>
-      <select id="setSim"><option value="on">On — members walk around</option><option value="off">Off</option></select>
-    </div>
+    <div class="field"><label>Avatar color</label><div class="color-row" id="setColors"></div></div>
+    <div class="field"><label>Circle</label><input id="setCircleInfo" disabled /></div>
     <button class="btn primary" id="setSave">Save</button>
-    <button class="btn danger" id="setReset" style="margin-top:10px;">Reset all data</button>
+    <button class="btn ghost" id="setInvite" style="margin-top:10px;">Invite friends</button>
+    <button class="btn danger" id="setLeave" style="margin-top:10px;">Leave circle</button>
     <button class="btn ghost" id="setCancel" style="margin-top:8px;">Close</button>
-    <p class="hint" style="margin-top:14px;text-align:center;">iGotchu v1.0 · data stored locally on this device</p>
+    <p class="hint" style="margin-top:14px;text-align:center;" id="setStatus">iGotchu v2.0</p>
   </div>
 </div>
 
@@ -355,486 +379,383 @@
 
 <script>
 /* ============================================================
-   iGotchu — single-file family location tracker
-   Data persists in localStorage. Real GPS via Geolocation API.
+   iGotchu v2 — real cross-device family tracker
+   Backend: Firebase Realtime Database (free tier).
+   Falls back to solo/local mode if Firebase isn't configured.
    ============================================================ */
 
-const LS = 'igotchu_v1';
+/* ---------- 1. FIREBASE CONFIG ----------
+   Paste your Firebase project's config below (see FIREBASE-SETUP.md).
+   Leave as-is to run in solo/local mode (no cross-device sync). */
+const FIREBASE_CONFIG = {
+  apiKey: "PASTE_API_KEY",
+  authDomain: "PASTE_PROJECT.firebaseapp.com",
+  databaseURL: "https://PASTE_PROJECT-default-rtdb.firebaseio.com",
+  projectId: "PASTE_PROJECT",
+  storageBucket: "PASTE_PROJECT.appspot.com",
+  messagingSenderId: "PASTE_SENDER_ID",
+  appId: "PASTE_APP_ID"
+};
+const FIREBASE_READY = !FIREBASE_CONFIG.apiKey.startsWith("PASTE_");
+
+/* ---------- 2. STATE ---------- */
+const LS = 'igotchu_v2';
 const COLORS = ['#2bd4ff','#37e0a6','#ffb24d','#ff7eb6','#a78bfa','#ff5d6c','#5ee0c0','#ffd166'];
 const EMOJIS = ['🏠','🏫','💼','🏥','🏋️','🛒','⛪','🍽️','🌳','👵','⚽','✈️'];
 
-let state = load();
-let map, meMarker, meAccuracy;
-let markers = {};      // memberId -> leaflet marker
-let placeLayers = {};  // placeId -> {circle, marker}
-let watchId = null;
-let simTimer = null;
-let activeTab = 'people';
-let editingMemberId = null;
-let pickColor = COLORS[1];
-let pickEmoji = EMOJIS[0];
-// runtime: which member is currently inside which place (for arrive/leave edges)
-let presence = {};
+let local = loadLocal();      // { uid, name, color, circleId, circleName, live, setup }
+let places = [];              // synced/local places
+let alerts = [];              // local activity log
+let members = {};             // uid -> {name,color,lat,lng,batt,updated,live}
+let map, markers={}, placeLayers={}, meAccuracy=null;
+let watchId=null, activeTab='people', pickEmoji=EMOJIS[0], pickColor;
+let presence={};              // uid -> placeId (for arrive/leave edges)
+let db=null, fb=null;
 
-/* ---------------- persistence ---------------- */
-function blank(){
-  return {
-    setup:false,
-    circleName:'My Family',
-    me:{id:'me',name:'You',color:'#2bd4ff',lat:null,lng:null,batt:100,updated:null,live:false},
-    members:[],   // {id,name,color,lat,lng,batt,updated,sim:{tlat,tlng}}
-    places:[],    // {id,name,emoji,lat,lng,radius,alerts}
-    alerts:[],    // {id,type,text,ts}
-    sim:'on'
-  };
+function loadLocal(){
+  try{const r=JSON.parse(localStorage.getItem(LS)); if(r&&r.uid) return r;}catch(e){}
+  return {uid:'u_'+Math.random().toString(36).slice(2,10),name:'',color:COLORS[0],circleId:null,circleName:'',live:false,setup:false};
 }
-function load(){
-  try{const r=JSON.parse(localStorage.getItem(LS));return r&&r.me?r:blank();}
-  catch(e){return blank();}
-}
-function save(){ localStorage.setItem(LS, JSON.stringify(state)); }
+function saveLocal(){ localStorage.setItem(LS, JSON.stringify(local)); }
+function loadPlacesLocal(){ try{return JSON.parse(localStorage.getItem(LS+'_places'))||[];}catch(e){return [];} }
+function savePlacesLocal(){ localStorage.setItem(LS+'_places', JSON.stringify(places)); }
+function loadAlertsLocal(){ try{return JSON.parse(localStorage.getItem(LS+'_alerts'))||[];}catch(e){return [];} }
+function saveAlertsLocal(){ localStorage.setItem(LS+'_alerts', JSON.stringify(alerts.slice(0,60))); }
 
-/* ---------------- helpers ---------------- */
+/* ---------- 3. HELPERS ---------- */
 const $ = s=>document.querySelector(s);
-const el = (t,c)=>{const e=document.createElement(t);if(c)e.className=c;return e;};
-const uid = ()=>Math.random().toString(36).slice(2,9);
-function initials(n){return (n||'?').trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();}
-function ago(ts){
-  if(!ts) return 'no location yet';
+const el=(t,c)=>{const e=document.createElement(t);if(c)e.className=c;return e;};
+const initials=n=>(n||'?').trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
+const code6=()=>{const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let s='';for(let i=0;i<6;i++)s+=c[Math.floor(Math.random()*c.length)];return s;};
+function ago(ts){ if(!ts)return 'no location yet';
   const s=Math.floor((Date.now()-ts)/1000);
-  if(s<10) return 'just now';
-  if(s<60) return s+'s ago';
-  const m=Math.floor(s/60); if(m<60) return m+'m ago';
-  const h=Math.floor(m/60); if(h<24) return h+'h ago';
-  return Math.floor(h/24)+'d ago';
-}
-function dist(a,b,c,d){ // meters, haversine
-  const R=6371000,r=Math.PI/180;
-  const dl=(c-a)*r,dn=(d-b)*r;
-  const x=Math.sin(dl/2)**2+Math.cos(a*r)*Math.cos(c*r)*Math.sin(dn/2)**2;
-  return 2*R*Math.asin(Math.sqrt(x));
-}
-function nearestPlace(lat,lng){
-  let best=null;
-  for(const p of state.places){
-    const d=dist(lat,lng,p.lat,p.lng);
-    if(d<=p.radius && (!best||d<best.d)) best={p,d};
-  }
-  return best;
-}
+  if(s<10)return 'just now'; if(s<60)return s+'s ago';
+  const m=Math.floor(s/60); if(m<60)return m+'m ago';
+  const h=Math.floor(m/60); if(h<24)return h+'h ago'; return Math.floor(h/24)+'d ago'; }
+function dist(a,b,c,d){const R=6371000,r=Math.PI/180,dl=(c-a)*r,dn=(d-b)*r;
+  const x=Math.sin(dl/2)**2+Math.cos(a*r)*Math.cos(c*r)*Math.sin(dn/2)**2;return 2*R*Math.asin(Math.sqrt(x));}
+function nearestPlace(lat,lng){let best=null;for(const p of places){const d=dist(lat,lng,p.lat,p.lng);
+  if(d<=p.radius&&(!best||d<best.d))best={p,d};}return best;}
+function me(){ return members[local.uid]; }
 
-/* ---------------- toast / notify ---------------- */
+/* ---------- 4. TOAST / ALERTS ---------- */
 function toast(icon,text,kind){
-  const t=el('div','toast '+(kind||''));
-  t.innerHTML=`<div class="ti">${icon}</div><div class="tt">${text}</div>`;
+  const t=el('div','toast '+(kind||'')); t.innerHTML=`<div class="ti">${icon}</div><div class="tt">${text}</div>`;
   $('#toasts').appendChild(t);
-  setTimeout(()=>{t.style.transition='.3s';t.style.opacity='0';t.style.transform='translateY(-12px)';
-    setTimeout(()=>t.remove(),320);},4200);
+  setTimeout(()=>{t.style.transition='.3s';t.style.opacity='0';t.style.transform='translateY(-12px)';setTimeout(()=>t.remove(),320);},4200);
   if('vibrate' in navigator) navigator.vibrate(kind==='sos'?[80,40,80]:30);
 }
-function logAlert(type,text){
-  state.alerts.unshift({id:uid(),type,text,ts:Date.now()});
-  if(state.alerts.length>60) state.alerts.length=60;
-  save();
-  if(activeTab==='alerts') renderTab();
-}
+function logAlert(type,text){ alerts.unshift({type,text,ts:Date.now()}); if(alerts.length>60)alerts.length=60;
+  saveAlertsLocal(); if(activeTab==='alerts')renderTab(); }
 
-/* ---------------- map ---------------- */
+/* ---------- 5. MAP ---------- */
 function initMap(){
   map=L.map('map',{zoomControl:false,attributionControl:true}).setView([43.6532,-79.3832],13);
   L.control.zoom({position:'topright'}).addTo(map);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
-    attribution:'© OpenStreetMap © CARTO',maxZoom:19
-  }).addTo(map);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:19}).addTo(map);
 }
 function memberIcon(m,isMe){
   const ring=isMe?`<div class="ring" style="color:${m.color}"></div>`:'';
-  return L.divIcon({
-    className:'',
-    html:`<div class="member-pin" style="color:${m.color}">${ring}
-      <div class="avatar" style="background:${m.color}">${initials(m.name)}</div>
-      <div class="stem"></div></div>`,
-    iconSize:[42,50],iconAnchor:[21,50]
-  });
+  return L.divIcon({className:'',html:`<div class="member-pin" style="color:${m.color}">${ring}
+    <div class="avatar" style="background:${m.color}">${initials(m.name)}</div><div class="stem"></div></div>`,
+    iconSize:[42,50],iconAnchor:[21,50]});
 }
 function drawMembers(){
-  // me
-  const me=state.me;
-  if(me.lat!=null){
-    if(!meMarker){
-      meMarker=L.marker([me.lat,me.lng],{icon:memberIcon(me,true),zIndexOffset:1000}).addTo(map);
-    } else { meMarker.setLatLng([me.lat,me.lng]); meMarker.setIcon(memberIcon(me,true)); }
-  }
-  // others
   const ids=new Set();
-  for(const m of state.members){
-    ids.add(m.id);
-    if(m.lat==null) continue;
-    if(!markers[m.id]){
-      markers[m.id]=L.marker([m.lat,m.lng],{icon:memberIcon(m,false)}).addTo(map);
-      markers[m.id].on('click',()=>focusMember(m.id));
-    } else { markers[m.id].setLatLng([m.lat,m.lng]); }
+  for(const uid in members){
+    const m=members[uid]; if(m.lat==null)continue; ids.add(uid);
+    const isMe=uid===local.uid;
+    if(!markers[uid]){
+      markers[uid]=L.marker([m.lat,m.lng],{icon:memberIcon(m,isMe),zIndexOffset:isMe?1000:0}).addTo(map);
+      markers[uid].on('click',()=>focusMember(uid));
+    } else { markers[uid].setLatLng([m.lat,m.lng]); markers[uid].setIcon(memberIcon(m,isMe)); }
   }
   for(const k in markers){ if(!ids.has(k)){ map.removeLayer(markers[k]); delete markers[k]; } }
 }
 function drawPlaces(){
   for(const k in placeLayers){ map.removeLayer(placeLayers[k].circle); map.removeLayer(placeLayers[k].marker); }
   placeLayers={};
-  for(const p of state.places){
-    const circle=L.circle([p.lat,p.lng],{radius:p.radius,color:'#37e0a6',weight:1.5,
-      fillColor:'#37e0a6',fillOpacity:.07}).addTo(map);
-    const marker=L.marker([p.lat,p.lng],{icon:L.divIcon({className:'',
-      html:`<div class="place-marker">${p.emoji}</div>`,iconSize:[34,34],iconAnchor:[17,17]})}).addTo(map);
+  for(const p of places){
+    const circle=L.circle([p.lat,p.lng],{radius:p.radius,color:'#37e0a6',weight:1.5,fillColor:'#37e0a6',fillOpacity:.07}).addTo(map);
+    const marker=L.marker([p.lat,p.lng],{icon:L.divIcon({className:'',html:`<div class="place-marker">${p.emoji}</div>`,iconSize:[34,34],iconAnchor:[17,17]})}).addTo(map);
     placeLayers[p.id]={circle,marker};
   }
 }
-function focusMember(id){
-  const m=id==='me'?state.me:state.members.find(x=>x.id===id);
-  if(m&&m.lat!=null){ map.flyTo([m.lat,m.lng],16,{duration:.6}); }
-}
+function focusMember(uid){const m=members[uid];if(m&&m.lat!=null)map.flyTo([m.lat,m.lng],16,{duration:.6});}
 function fitAll(){
   const pts=[];
-  if(state.me.lat!=null) pts.push([state.me.lat,state.me.lng]);
-  state.members.forEach(m=>m.lat!=null&&pts.push([m.lat,m.lng]));
-  state.places.forEach(p=>pts.push([p.lat,p.lng]));
-  if(pts.length===0) return;
-  if(pts.length===1){ map.flyTo(pts[0],15,{duration:.6}); return; }
+  for(const uid in members){const m=members[uid];if(m.lat!=null)pts.push([m.lat,m.lng]);}
+  places.forEach(p=>pts.push([p.lat,p.lng]));
+  if(!pts.length)return;
+  if(pts.length===1){map.flyTo(pts[0],15,{duration:.6});return;}
   map.flyToBounds(L.latLngBounds(pts).pad(.25),{duration:.6});
 }
 
-/* ---------------- live GPS ---------------- */
+/* ---------- 6. LIVE GPS ---------- */
+function getBattery(cb){ if(navigator.getBattery){navigator.getBattery().then(b=>cb(Math.round(b.level*100))).catch(()=>cb(null));} else cb(null); }
 function toggleLive(){
-  state.me.live=!state.me.live;
-  $('#liveBtn').classList.toggle('on',state.me.live);
-  if(state.me.live){
-    if(!navigator.geolocation){ toast('⚠️','Geolocation not supported on this device.','leave'); state.me.live=false; $('#liveBtn').classList.remove('on'); return; }
-    toast('📡','Sharing your live location with the circle.');
+  local.live=!local.live; $('#liveBtn').classList.toggle('on',local.live); saveLocal();
+  if(local.live){
+    if(!navigator.geolocation){ toast('⚠️','Geolocation not supported here.','leave'); local.live=false; $('#liveBtn').classList.remove('on'); return; }
+    toast('📡','Sharing your live location.');
     watchId=navigator.geolocation.watchPosition(pos=>{
-      state.me.lat=pos.coords.latitude;
-      state.me.lng=pos.coords.longitude;
-      state.me.updated=Date.now();
-      if(meAccuracy) map.removeLayer(meAccuracy);
-      meAccuracy=L.circle([state.me.lat,state.me.lng],{radius:Math.min(pos.coords.accuracy||40,120),
-        color:'#2bd4ff',weight:1,fillColor:'#2bd4ff',fillOpacity:.08}).addTo(map);
-      save(); drawMembers(); checkGeofences(state.me); if(activeTab==='people') renderTab();
-    },err=>{
-      toast('⚠️','Location blocked. Enable location permission to appear on the map.','leave');
-      state.me.live=false; $('#liveBtn').classList.remove('on');
-    },{enableHighAccuracy:true,maximumAge:5000,timeout:15000});
+      const lat=pos.coords.latitude,lng=pos.coords.longitude;
+      getBattery(batt=>{
+        const m=members[local.uid]||(members[local.uid]={name:local.name,color:local.color});
+        m.lat=lat; m.lng=lng; m.updated=Date.now(); if(batt!=null)m.batt=batt; m.live=true;
+        if(meAccuracy)map.removeLayer(meAccuracy);
+        meAccuracy=L.circle([lat,lng],{radius:Math.min(pos.coords.accuracy||40,120),color:'#2bd4ff',weight:1,fillColor:'#2bd4ff',fillOpacity:.08}).addTo(map);
+        pushMe(); drawMembers(); checkGeofences(local.uid); if(activeTab==='people')renderTab();
+      });
+    },err=>{ toast('⚠️','Location blocked. Enable permission to appear on the map.','leave'); local.live=false; $('#liveBtn').classList.remove('on'); saveLocal(); },
+    {enableHighAccuracy:true,maximumAge:5000,timeout:15000});
   } else {
-    if(watchId!=null){ navigator.geolocation.clearWatch(watchId); watchId=null; }
-    if(meAccuracy){ map.removeLayer(meAccuracy); meAccuracy=null; }
-    toast('🔕','Stopped sharing your live location.');
+    if(watchId!=null){navigator.geolocation.clearWatch(watchId);watchId=null;}
+    if(meAccuracy){map.removeLayer(meAccuracy);meAccuracy=null;}
+    if(members[local.uid])members[local.uid].live=false;
+    toast('🔕','Stopped sharing your location.');
+    pushMe();
   }
-  save();
 }
-function centerMe(){
-  if(state.me.lat!=null){ map.flyTo([state.me.lat,state.me.lng],16,{duration:.6}); }
-  else if(!state.me.live){ toggleLive(); }
-  else toast('📍','Waiting for your location…');
-}
+function centerMe(){ const m=me(); if(m&&m.lat!=null)map.flyTo([m.lat,m.lng],16,{duration:.6}); else if(!local.live)toggleLive(); else toast('📍','Waiting for your location…'); }
 
-/* ---------------- geofence engine ---------------- */
-function checkGeofences(m){
+/* ---------- 7. GEOFENCE ENGINE ---------- */
+function checkGeofences(uid){
+  const m=members[uid]; if(!m||m.lat==null)return;
   const near=nearestPlace(m.lat,m.lng);
-  const wasIn=presence[m.id]||null;
-  const nowIn=near?near.p.id:null;
-  if(wasIn===nowIn) return;
-  const who = m.id==='me'?'You':m.name;
-  // left old
-  if(wasIn){
-    const p=state.places.find(x=>x.id===wasIn);
-    if(p&&(p.alerts==='both'||p.alerts==='leave')){
-      const verb=m.id==='me'?'left':'left';
-      logAlert('leave',`<b>${who}</b> ${verb} <b>${p.name}</b>`);
-      toast('🚶',`<b>${who}</b> left <b>${p.name}</b>`,'leave');
-    }
-  }
-  // entered new
-  if(nowIn){
-    const p=state.places.find(x=>x.id===nowIn);
-    if(p&&(p.alerts==='both'||p.alerts==='arrive')){
-      logAlert('arrive',`<b>${who}</b> arrived at <b>${p.name}</b>`);
-      toast('📍',`<b>${who}</b> arrived at <b>${p.name}</b>`);
-    }
-  }
-  presence[m.id]=nowIn;
+  const was=presence[uid]||null, now=near?near.p.id:null;
+  if(was===now)return;
+  const who=uid===local.uid?'You':m.name;
+  if(was){ const p=places.find(x=>x.id===was); if(p&&(p.alerts==='both'||p.alerts==='leave')){
+    logAlert('leave',`<b>${who}</b> left <b>${p.name}</b>`); toast('🚶',`<b>${who}</b> left <b>${p.name}</b>`,'leave'); } }
+  if(now){ const p=places.find(x=>x.id===now); if(p&&(p.alerts==='both'||p.alerts==='arrive')){
+    logAlert('arrive',`<b>${who}</b> arrived at <b>${p.name}</b>`); toast('📍',`<b>${who}</b> arrived at <b>${p.name}</b>`); } }
+  presence[uid]=now;
 }
 
-/* ---------------- simulation (demo family) ---------------- */
-function seedSimMember(m){
-  // place them near current map center or me
-  const base = state.me.lat!=null ? [state.me.lat,state.me.lng] : [map.getCenter().lat,map.getCenter().lng];
-  m.lat = base[0] + (Math.random()-.5)*0.03;
-  m.lng = base[1] + (Math.random()-.5)*0.03;
-  m.updated = Date.now();
-  m.sim = {tlat:m.lat,tlng:m.lng,steps:0};
+/* ---------- 8. FIREBASE SYNC ---------- */
+function fbPath(p){ return `circles/${local.circleId}/${p}`; }
+function pushMe(){
+  const m=members[local.uid]; if(!m||!db)return;
+  const payload={ name:local.name, color:local.color, updated:Date.now(),
+    live:!!local.live, lat:local.live?m.lat:null, lng:local.live?m.lng:null, batt:m.batt!=null?m.batt:null };
+  db.ref(fbPath('members/'+local.uid)).set(payload);
 }
-function stepSim(){
-  if(state.sim!=='on'||state.members.length===0) return;
-  let moved=false;
-  for(const m of state.members){
-    if(m.lat==null){ seedSimMember(m); moved=true; continue; }
-    if(!m.sim) m.sim={tlat:m.lat,tlng:m.lng,steps:0};
-    // pick a new target occasionally — sometimes a saved place
-    if(m.sim.steps<=0){
-      if(state.places.length && Math.random()<0.5){
-        const p=state.places[Math.floor(Math.random()*state.places.length)];
-        m.sim.tlat=p.lat+(Math.random()-.5)*0.0006;
-        m.sim.tlng=p.lng+(Math.random()-.5)*0.0006;
-      } else {
-        const base=state.me.lat!=null?[state.me.lat,state.me.lng]:[map.getCenter().lat,map.getCenter().lng];
-        m.sim.tlat=base[0]+(Math.random()-.5)*0.04;
-        m.sim.tlng=base[1]+(Math.random()-.5)*0.04;
-      }
-      m.sim.steps=10+Math.floor(Math.random()*20);
-    }
-    m.lat += (m.sim.tlat-m.lat)*0.18;
-    m.lng += (m.sim.tlng-m.lng)*0.18;
-    m.sim.steps--;
-    m.updated=Date.now();
-    if(Math.random()<0.03) m.batt=Math.max(5,(m.batt||100)-1);
-    checkGeofences(m);
-    moved=true;
-  }
-  if(moved){ save(); drawMembers(); if(activeTab==='people') renderTab(); }
-}
-function startSim(){ clearInterval(simTimer); simTimer=setInterval(stepSim,1400); }
+function pushPlace(p){ if(db)db.ref(fbPath('places/'+p.id)).set(p); else savePlacesLocal(); }
+function removePlaceRemote(id){ if(db)db.ref(fbPath('places/'+id)).remove(); else savePlacesLocal(); }
+function pushAlertRemote(a){ if(db)db.ref(fbPath('alerts')).push(a); }
 
-/* ---------------- rendering: sheet tabs ---------------- */
-function renderTab(){
-  const s=$('#scroll'); s.innerHTML='';
-  if(activeTab==='people') renderPeople(s);
-  else if(activeTab==='places') renderPlaces(s);
-  else renderAlerts(s);
+function startFirebase(){
+  if(!FIREBASE_READY)return false;
+  try{
+    fb=firebase.initializeApp(FIREBASE_CONFIG);
+    db=firebase.database();
+    return true;
+  }catch(e){ console.error(e); db=null; return false; }
 }
-function memberRow(m,isMe){
+function subscribeCircle(){
+  if(!db)return;
+  db.ref(fbPath('members')).on('value',snap=>{
+    const data=snap.val()||{};
+    const prevIds=new Set(Object.keys(members));
+    const next={};
+    for(const uid in data){ const d=data[uid];
+      next[uid]={name:d.name,color:d.color,lat:d.lat??null,lng:d.lng??null,batt:d.batt,updated:d.updated,live:d.live};
+      if(!prevIds.has(uid)&&uid!==local.uid&&local.setup){ logAlert('join',`<b>${d.name}</b> joined the circle`); toast('👋',`<b>${d.name}</b> joined the circle`); }
+    }
+    if(!next[local.uid]) next[local.uid]=members[local.uid]||{name:local.name,color:local.color,lat:null,lng:null};
+    members=next;
+    drawMembers(); for(const uid in members)checkGeofences(uid); if(activeTab==='people')renderTab();
+  });
+  db.ref(fbPath('places')).on('value',snap=>{
+    const data=snap.val()||{}; places=Object.values(data);
+    drawPlaces(); if(activeTab==='places')renderTab();
+  });
+  db.ref(fbPath('meta')).once('value').then(s=>{ const v=s.val(); if(v&&v.name){local.circleName=v.name;saveLocal();$('#circleName').textContent=v.name;} });
+  // remove my pin if I close the tab while not sharing handled by leave; keep last known otherwise
+}
+
+/* ---------- 9. RENDER ---------- */
+function renderTab(){const s=$('#scroll');s.innerHTML='';
+  if(activeTab==='people')renderPeople(s); else if(activeTab==='places')renderPlaces(s); else renderAlerts(s);}
+function memberRow(uid){
+  const m=members[uid]; const isMe=uid===local.uid;
   const r=el('div','member'+(isMe?' is-me':''));
   const near=m.lat!=null?nearestPlace(m.lat,m.lng):null;
-  const stale = m.updated && (Date.now()-m.updated>120000);
-  const sub = m.lat==null ? 'Waiting for location…'
-            : near ? `<span class="at">${near.p.emoji} at ${near.p.name}</span>`
-            : `On the move`;
-  const batt=m.batt!=null?m.batt:100;
+  const stale=m.updated&&(Date.now()-m.updated>120000);
+  const sub=m.lat==null?(isMe?'Tap 📡 to share your location':'Not sharing location')
+    :near?`<span class="at">${near.p.emoji} at ${near.p.name}</span>`:'On the move';
+  const batt=m.batt; const battTxt=batt!=null?`${batt<=20?'🪫':'🔋'} ${batt}%`:'';
   r.innerHTML=`
-    <div class="av" style="background:${m.color}">${initials(m.name)}
-      <span class="online ${stale?'stale':''}"></span></div>
-    <div class="m-main">
-      <div class="m-name">${m.name}${isMe?'<span class="you">YOU</span>':''}</div>
-      <div class="m-sub">${sub}</div>
-    </div>
-    <div class="m-meta">
-      <div class="m-batt ${batt<=20?'low':''}">${batt<=20?'🪫':'🔋'} ${batt}%</div>
-      <div class="m-time">${m.lat==null?'—':ago(m.updated)}</div>
-    </div>`;
-  r.onclick=()=>{ if(m.lat!=null){ focusMember(isMe?'me':m.id); collapseSheet(); } else if(isMe){ toggleLive(); } };
+    <div class="av" style="background:${m.color}">${initials(m.name)}<span class="online ${stale||m.lat==null?'stale':''}"></span></div>
+    <div class="m-main"><div class="m-name">${m.name}${isMe?'<span class="you">YOU</span>':''}</div>
+      <div class="m-sub">${sub}</div></div>
+    <div class="m-meta"><div class="m-batt ${batt!=null&&batt<=20?'low':''}">${battTxt}</div>
+      <div class="m-time">${m.lat==null?'—':ago(m.updated)}</div></div>`;
+  r.onclick=()=>{ if(m.lat!=null){focusMember(uid);collapseSheet();} else if(isMe)toggleLive(); };
   return r;
 }
 function renderPeople(s){
   $('#sheetTitle').textContent='Circle';
-  $('#sheetCount').textContent=(state.members.length+1)+' members';
-  s.appendChild(memberRow(state.me,true));
-  state.members.forEach(m=>s.appendChild(memberRow(m,false)));
-  const add=el('button','add-place-btn');
-  add.innerHTML='＋ Add family member';
-  add.onclick=openAddMember;
-  s.appendChild(add);
+  const ids=Object.keys(members); $('#sheetCount').textContent=ids.length+(ids.length===1?' member':' members');
+  if(members[local.uid]) s.appendChild(memberRow(local.uid));
+  ids.filter(u=>u!==local.uid).forEach(u=>s.appendChild(memberRow(u)));
+  const add=el('button','add-place-btn'); add.innerHTML='🔗 Invite friends to this circle'; add.onclick=openInvite; s.appendChild(add);
+  if(ids.length<=1){ const e=el('div','empty');
+    e.innerHTML=db?'Your circle is just you so far.<br>Invite friends with your code — they appear here live once they join &amp; share location.'
+                  :'Solo mode — live sync isn\'t set up.<br>See FIREBASE-SETUP.md to connect friends across devices.';
+    s.appendChild(e); }
 }
 function renderPlaces(s){
-  $('#sheetTitle').textContent='Places';
-  $('#sheetCount').textContent=state.places.length+' saved';
-  const add=el('button','add-place-btn');
-  add.innerHTML='＋ Add a place';
-  add.onclick=openAddPlace;
-  s.appendChild(add);
-  if(state.places.length===0){
-    const e=el('div','empty'); e.textContent='No places yet. Add Home, School or Work to get arrive/leave alerts.'; s.appendChild(e); return;
-  }
-  state.places.forEach(p=>{
-    const here=[];
-    if(state.me.lat!=null && dist(state.me.lat,state.me.lng,p.lat,p.lng)<=p.radius) here.push('You');
-    state.members.forEach(m=>{ if(m.lat!=null && dist(m.lat,m.lng,p.lat,p.lng)<=p.radius) here.push(m.name);});
+  $('#sheetTitle').textContent='Places'; $('#sheetCount').textContent=places.length+' saved';
+  const add=el('button','add-place-btn'); add.innerHTML='＋ Add a place'; add.onclick=openAddPlace; s.appendChild(add);
+  if(!places.length){const e=el('div','empty');e.textContent='No places yet. Add Home, School or Work to get arrive/leave alerts.';s.appendChild(e);return;}
+  places.forEach(p=>{
+    const here=[]; for(const uid in members){const m=members[uid];if(m.lat!=null&&dist(m.lat,m.lng,p.lat,p.lng)<=p.radius)here.push(uid===local.uid?'You':m.name);}
     const row=el('div','place');
-    const alertTxt={both:'Arrive & leave',arrive:'Arrive only',leave:'Leave only',off:'Alerts off'}[p.alerts];
-    row.innerHTML=`
-      <div class="pico">${p.emoji}</div>
-      <div class="p-main">
-        <div class="p-name">${p.name}</div>
-        <div class="p-sub">${p.radius}m · ${alertTxt}${here.length?` · <span class="p-here">${here.join(', ')} here</span>`:''}</div>
-      </div>
+    const at={both:'Arrive & leave',arrive:'Arrive only',leave:'Leave only',off:'Alerts off'}[p.alerts];
+    row.innerHTML=`<div class="pico">${p.emoji}</div>
+      <div class="p-main"><div class="p-name">${p.name}</div>
+      <div class="p-sub">${p.radius}m · ${at}${here.length?` · <span class="p-here">${here.join(', ')} here</span>`:''}</div></div>
       <button class="delbtn" title="Delete">🗑</button>`;
-    row.querySelector('.pico').onclick=()=>{map.flyTo([p.lat,p.lng],16,{duration:.6});collapseSheet();};
     row.querySelector('.p-main').onclick=()=>{map.flyTo([p.lat,p.lng],16,{duration:.6});collapseSheet();};
-    row.querySelector('.delbtn').onclick=(e)=>{e.stopPropagation();
-      state.places=state.places.filter(x=>x.id!==p.id); save(); drawPlaces(); renderTab();};
+    row.querySelector('.pico').onclick=()=>{map.flyTo([p.lat,p.lng],16,{duration:.6});collapseSheet();};
+    row.querySelector('.delbtn').onclick=e=>{e.stopPropagation();places=places.filter(x=>x.id!==p.id);removePlaceRemote(p.id);if(!db)savePlacesLocal();drawPlaces();renderTab();};
     s.appendChild(row);
   });
 }
 function renderAlerts(s){
-  $('#sheetTitle').textContent='Activity';
-  $('#sheetCount').textContent=state.alerts.length+' events';
-  if(state.alerts.length===0){
-    const e=el('div','empty'); e.textContent='No activity yet. Alerts appear when members arrive or leave your places.'; s.appendChild(e); return;
-  }
-  state.alerts.forEach(a=>{
-    const row=el('div','alert-row');
-    const icon=a.type==='arrive'?'📍':a.type==='leave'?'🚶':'🆘';
-    row.innerHTML=`<div class="ai ${a.type}">${icon}</div>
-      <div class="a-txt">${a.text}<div class="a-time">${new Date(a.ts).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})} · ${ago(a.ts)}</div></div>`;
-    s.appendChild(row);
-  });
+  $('#sheetTitle').textContent='Activity'; $('#sheetCount').textContent=alerts.length+' events';
+  if(!alerts.length){const e=el('div','empty');e.textContent='No activity yet. Alerts appear when members arrive, leave or join.';s.appendChild(e);return;}
+  alerts.forEach(a=>{const row=el('div','alert-row');
+    const icon=a.type==='arrive'?'📍':a.type==='leave'?'🚶':a.type==='join'?'👋':'🆘';
+    row.innerHTML=`<div class="ai ${a.type}">${icon}</div><div class="a-txt">${a.text}
+      <div class="a-time">${new Date(a.ts).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})} · ${ago(a.ts)}</div></div>`;
+    s.appendChild(row);});
 }
 
-/* ---------------- sheet behavior ---------------- */
+/* ---------- 10. SHEET ---------- */
 let sheetCollapsed=false;
-function collapseSheet(){ sheetCollapsed=true; $('#sheet').classList.add('collapsed'); }
-function toggleSheet(){ sheetCollapsed=!sheetCollapsed; $('#sheet').classList.toggle('collapsed',sheetCollapsed); }
+function collapseSheet(){sheetCollapsed=true;$('#sheet').classList.add('collapsed');}
+function toggleSheet(){sheetCollapsed=!sheetCollapsed;$('#sheet').classList.toggle('collapsed',sheetCollapsed);}
 
-/* ---------------- modals ---------------- */
-function openAddMember(){
-  editingMemberId=null; pickColor=COLORS[(state.members.length+1)%COLORS.length];
-  $('#mmTitle').textContent='Add family member';
-  $('#mmName').value='';
-  renderColorPicker();
-  $('#memberModal').classList.add('open');
+/* ---------- 11. MODALS ---------- */
+function openInvite(){ $('#inviteCode').textContent=local.circleId||'—'; $('#inviteModal').classList.add('open'); }
+function copyCode(){ if(local.circleId){try{navigator.clipboard.writeText(local.circleId);}catch(e){} toast('📋','Code copied.');} }
+function shareInvite(){
+  const url=location.origin+location.pathname+'?join='+local.circleId;
+  const text=`Join my iGotchu circle! Code: ${local.circleId}`;
+  if(navigator.share){ navigator.share({title:'iGotchu',text,url}).catch(()=>{}); }
+  else { try{navigator.clipboard.writeText(text+' '+url);}catch(e){} toast('📋','Invite copied to clipboard.'); }
 }
-function renderColorPicker(){
-  const c=$('#mmColors'); c.innerHTML='';
-  COLORS.forEach(col=>{
-    const d=el('div','c'+(col===pickColor?' on':'')); d.style.background=col;
-    d.onclick=()=>{pickColor=col;renderColorPicker();};
-    c.appendChild(d);
-  });
-}
-function saveMember(){
-  const name=$('#mmName').value.trim()||'Member';
-  state.members.push({id:uid(),name,color:pickColor,lat:null,lng:null,batt:90+Math.floor(Math.random()*10),updated:null});
-  save();
-  $('#memberModal').classList.remove('open');
-  stepSim(); drawMembers(); renderTab();
-  toast('👤',`<b>${name}</b> added to the circle.`);
-}
-
-function openAddPlace(){
-  pickEmoji=EMOJIS[0];
-  $('#plName').value=''; $('#plRadius').value=150; $('#plAlerts').value='both'; $('#plLoc').value='center';
-  renderEmojiPicker();
-  $('#placeModal').classList.add('open');
-}
-function renderEmojiPicker(){
-  const c=$('#plEmoji'); c.innerHTML='';
-  EMOJIS.forEach(em=>{
-    const d=el('div','e'+(em===pickEmoji?' on':'')); d.textContent=em;
-    d.onclick=()=>{pickEmoji=em;renderEmojiPicker();};
-    c.appendChild(d);
-  });
-}
+function openAddPlace(){pickEmoji=EMOJIS[0];$('#plName').value='';$('#plRadius').value=150;$('#plAlerts').value='both';$('#plLoc').value='center';renderEmojiPicker();$('#placeModal').classList.add('open');}
+function renderEmojiPicker(){const c=$('#plEmoji');c.innerHTML='';EMOJIS.forEach(em=>{const d=el('div','e'+(em===pickEmoji?' on':''));d.textContent=em;d.onclick=()=>{pickEmoji=em;renderEmojiPicker();};c.appendChild(d);});}
 function savePlace(){
   const name=$('#plName').value.trim()||'Place';
   const radius=Math.max(50,Math.min(2000,parseInt($('#plRadius').value)||150));
-  const alerts=$('#plAlerts').value;
-  let lat,lng;
-  if($('#plLoc').value==='me'){
-    if(state.me.lat==null){ toast('⚠️','Turn on live location first to use your position.','leave'); return; }
-    lat=state.me.lat; lng=state.me.lng;
-  } else { const c=map.getCenter(); lat=c.lat; lng=c.lng; }
-  state.places.push({id:uid(),name,emoji:pickEmoji,lat,lng,radius,alerts});
-  save();
-  $('#placeModal').classList.remove('open');
-  drawPlaces(); renderTab();
-  toast(pickEmoji,`Saved <b>${name}</b>.`);
+  const alertsMode=$('#plAlerts').value; let lat,lng;
+  if($('#plLoc').value==='me'){ const m=me(); if(!m||m.lat==null){toast('⚠️','Turn on live location first.','leave');return;} lat=m.lat;lng=m.lng; }
+  else { const c=map.getCenter(); lat=c.lat;lng=c.lng; }
+  const p={id:'p_'+Math.random().toString(36).slice(2,9),name,emoji:pickEmoji,lat,lng,radius,alerts:alertsMode};
+  places.push(p); pushPlace(p); if(!db)savePlacesLocal();
+  $('#placeModal').classList.remove('open'); drawPlaces(); renderTab(); toast(pickEmoji,`Saved <b>${name}</b>.`);
 }
-
 function openSettings(){
-  $('#setCircle').value=state.circleName;
-  $('#setName').value=state.me.name;
-  $('#setSim').value=state.sim;
+  $('#setName').value=local.name; pickColor=local.color; renderColorPicker();
+  $('#setCircleInfo').value=(local.circleName||'Circle')+'  ·  '+(local.circleId||'solo');
+  $('#setStatus').textContent=db?'iGotchu v2.0 · live sync on':'iGotchu v2.0 · solo mode';
   $('#settingsModal').classList.add('open');
 }
+function renderColorPicker(){const c=$('#setColors');c.innerHTML='';COLORS.forEach(col=>{const d=el('div','c'+(col===pickColor?' on':''));d.style.background=col;d.onclick=()=>{pickColor=col;renderColorPicker();};c.appendChild(d);});}
 function saveSettings(){
-  state.circleName=$('#setCircle').value.trim()||'My Family';
-  state.me.name=$('#setName').value.trim()||'You';
-  state.sim=$('#setSim').value;
-  save();
-  $('#circleName').textContent=state.circleName;
-  $('#settingsModal').classList.remove('open');
-  drawMembers(); renderTab();
+  local.name=$('#setName').value.trim()||'You'; local.color=pickColor; saveLocal();
+  if(members[local.uid]){members[local.uid].name=local.name;members[local.uid].color=local.color;}
+  pushMe(); $('#settingsModal').classList.remove('open'); drawMembers(); renderTab();
+}
+function leaveCircle(){
+  if(!confirm('Leave this circle? Your pin will be removed for everyone.'))return;
+  if(db) db.ref(fbPath('members/'+local.uid)).remove();
+  localStorage.removeItem(LS); localStorage.removeItem(LS+'_places'); localStorage.removeItem(LS+'_alerts');
+  location.href=location.origin+location.pathname;
 }
 
-/* ---------------- SOS ---------------- */
+/* ---------- 12. SOS ---------- */
 function sos(){
-  const who=state.me.name;
-  logAlert('sos',`🆘 <b>${who}</b> sent an SOS alert${state.me.lat!=null?' with their location':''}`);
-  toast('🆘',`SOS sent to your circle. Stay safe, <b>${who}</b>.`,'sos');
-  if(state.me.lat!=null){ map.flyTo([state.me.lat,state.me.lng],17,{duration:.6}); }
+  const m=me(); const who=local.name;
+  const a={type:'sos',text:`🆘 <b>${who}</b> sent an SOS${m&&m.lat!=null?' with their location':''}`,ts:Date.now()};
+  logAlert('sos',a.text); pushAlertRemote(a); toast('🆘',`SOS sent to your circle. Stay safe, <b>${who}</b>.`,'sos');
+  if(m&&m.lat!=null)map.flyTo([m.lat,m.lng],17,{duration:.6});
 }
 
-/* ---------------- onboarding ---------------- */
+/* ---------- 13. ONBOARDING ---------- */
+let onbMode='create';
 function finishOnboarding(){
-  const name=$('#onbName').value.trim()||'You';
-  const circle=$('#onbCircle').value.trim()||'My Family';
-  state.me.name=name; state.circleName=circle; state.setup=true;
-  // seed two demo members so the map isn't empty
-  state.members=[
-    {id:uid(),name:'Mom',color:COLORS[1],lat:null,lng:null,batt:88,updated:null},
-    {id:uid(),name:'Alex',color:COLORS[2],lat:null,lng:null,batt:64,updated:null}
-  ];
-  save();
-  $('#onb').style.display='none';
-  $('#app').style.display='flex';
+  const name=$('#onbName').value.trim()||'You'; local.name=name;
+  if(onbMode==='create'){ local.circleName=$('#onbCircle').value.trim()||'My Circle'; local.circleId=code6(); }
+  else { const code=$('#onbCode').value.trim().toUpperCase(); if(code.length<4){toast('⚠️','Enter the 6-character circle code.','leave');return;} local.circleId=code; local.circleName='Circle '+code; }
+  local.setup=true; saveLocal();
+  members[local.uid]={name:local.name,color:local.color,lat:null,lng:null};
+  $('#onb').style.display='none'; $('#app').style.display='flex';
+  if(db){ if(onbMode==='create') db.ref(fbPath('meta')).set({name:local.circleName,created:Date.now()}); subscribeCircle(); pushMe(); }
   boot();
 }
 
-/* ---------------- boot ---------------- */
+/* ---------- 14. BOOT ---------- */
 function boot(){
-  if(!map) initMap();
-  $('#circleName').textContent=state.circleName;
-  $('#liveBtn').classList.toggle('on',!!state.me.live);
+  if(!map)initMap();
+  $('#circleName').textContent=local.circleName||'Circle';
+  $('#circleCode').textContent=local.circleId||'solo';
+  $('#liveBtn').classList.remove('on'); local.live=false; saveLocal();
+  if(!db){ places=loadPlacesLocal(); }
+  alerts=loadAlertsLocal();
   drawPlaces(); drawMembers(); renderTab();
-  // seed sim members onto map
-  setTimeout(()=>{ stepSim(); fitAll(); },300);
-  startSim();
-  // try to auto-start live location for convenience
-  if(state.me.live){ state.me.live=false; toggleLive(); }
+  setTimeout(fitAll,400);
 }
 
-/* ---------------- wire up ---------------- */
+/* ---------- 15. WIRE UP ---------- */
+function attachFirebaseScript(cb){
+  if(!FIREBASE_READY){ cb(); return; }
+  const a=document.createElement('script'); a.src='https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js';
+  a.onload=()=>{ const b=document.createElement('script'); b.src='https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js';
+    b.onload=cb; b.onerror=cb; document.head.appendChild(b); };
+  a.onerror=cb; document.head.appendChild(a);
+}
+
 window.addEventListener('DOMContentLoaded',()=>{
-  // tabs
-  $('#seg').addEventListener('click',e=>{
-    const b=e.target.closest('button'); if(!b) return;
-    activeTab=b.dataset.tab;
+  const params=new URLSearchParams(location.search);
+  const joinCode=params.get('join');
+
+  $('#seg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;activeTab=b.dataset.tab;
     [...$('#seg').children].forEach(x=>x.classList.toggle('on',x===b));
-    if(sheetCollapsed){ sheetCollapsed=false; $('#sheet').classList.remove('collapsed'); }
-    renderTab();
-  });
-  $('#grab').onclick=toggleSheet;
-  $('#sheetTitle').onclick=toggleSheet;
+    if(sheetCollapsed){sheetCollapsed=false;$('#sheet').classList.remove('collapsed');}renderTab();});
+  $('#grab').onclick=toggleSheet; $('#sheetTitle').onclick=toggleSheet;
+  $('#liveBtn').onclick=toggleLive; $('#centerBtn').onclick=centerMe; $('#fitBtn').onclick=fitAll;
+  $('#sosBtn').onclick=sos; $('#settingsBtn').onclick=openSettings; $('#circlePill').onclick=openInvite;
 
-  $('#liveBtn').onclick=toggleLive;
-  $('#centerBtn').onclick=centerMe;
-  $('#fitBtn').onclick=fitAll;
-  $('#sosBtn').onclick=sos;
-  $('#settingsBtn').onclick=openSettings;
+  $('#inviteShare').onclick=shareInvite; $('#inviteCancel').onclick=()=>$('#inviteModal').classList.remove('open');
+  $('#inviteCodeBox').onclick=copyCode;
+  $('#plSave').onclick=savePlace; $('#plCancel').onclick=()=>$('#placeModal').classList.remove('open');
+  $('#setSave').onclick=saveSettings; $('#setCancel').onclick=()=>$('#settingsModal').classList.remove('open');
+  $('#setInvite').onclick=()=>{$('#settingsModal').classList.remove('open');openInvite();};
+  $('#setLeave').onclick=leaveCircle;
+  document.querySelectorAll('.modal-bg').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');}));
 
-  // member modal
-  $('#mmSave').onclick=saveMember;
-  $('#mmCancel').onclick=()=>$('#memberModal').classList.remove('open');
-  // place modal
-  $('#plSave').onclick=savePlace;
-  $('#plCancel').onclick=()=>$('#placeModal').classList.remove('open');
-  // settings
-  $('#setSave').onclick=saveSettings;
-  $('#setCancel').onclick=()=>$('#settingsModal').classList.remove('open');
-  $('#setReset').onclick=()=>{ if(confirm('Reset all iGotchu data on this device?')){ localStorage.removeItem(LS); location.reload(); } };
-  // close modal on backdrop
-  document.querySelectorAll('.modal-bg').forEach(m=>m.addEventListener('click',e=>{ if(e.target===m) m.classList.remove('open'); }));
-
-  // onboarding
+  $('#onbMode').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;onbMode=b.dataset.mode;
+    [...$('#onbMode').children].forEach(x=>x.classList.toggle('on',x===b));
+    $('#onbCircleField').style.display=onbMode==='create'?'block':'none';
+    $('#onbCodeField').style.display=onbMode==='join'?'block':'none';
+    $('#onbStart').textContent=onbMode==='create'?'Create my circle →':'Join circle →';});
   $('#onbStart').onclick=finishOnboarding;
+  if(!FIREBASE_READY) $('#onbConfigWarn').style.display='block';
 
-  if(state.setup){ $('#onb').style.display='none'; $('#app').style.display='flex'; boot(); }
-  else { $('#onb').style.display='flex'; }
+  attachFirebaseScript(()=>{
+    if(FIREBASE_READY) startFirebase();
+    if(joinCode){ onbMode='join'; [...$('#onbMode').children].forEach(x=>x.classList.toggle('on',x.dataset.mode==='join'));
+      $('#onbCircleField').style.display='none'; $('#onbCodeField').style.display='block'; $('#onbCode').value=joinCode.toUpperCase();
+      $('#onbStart').textContent='Join circle →'; }
+    if(local.setup){ $('#onb').style.display='none'; $('#app').style.display='flex'; if(db){subscribeCircle();} boot(); if(db)pushMe(); }
+    else { $('#onb').style.display='flex'; }
+  });
 });
 </script>
 </body>
