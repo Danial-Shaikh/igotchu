@@ -384,17 +384,15 @@
    Falls back to solo/local mode if Firebase isn't configured.
    ============================================================ */
 
-/* ---------- 1. FIREBASE CONFIG ----------
-   Paste your Firebase project's config below (see FIREBASE-SETUP.md).
-   Leave as-is to run in solo/local mode (no cross-device sync). */
-const FIREBASE_CONFIG = {
-  apiKey: "PASTE_API_KEY",
-  authDomain: "PASTE_PROJECT.firebaseapp.com",
-  databaseURL: "https://PASTE_PROJECT-default-rtdb.firebaseio.com",
-  projectId: "PASTE_PROJECT",
-  storageBucket: "PASTE_PROJECT.appspot.com",
-  messagingSenderId: "PASTE_SENDER_ID",
-  appId: "PASTE_APP_ID"
+/* ---------- 1. FIREBASE CONFIG ---------- */
+const FIREBASE_CONFIG  = {
+  apiKey: "AIzaSyClxvzAcRB0-Pi8guD1fAU4kwE5NIZhG4g",
+  authDomain: "igotchu-3893e.firebaseapp.com",
+  databaseURL: "https://igotchu-3893e-default-rtdb.firebaseio.com",
+  projectId: "igotchu-3893e",
+  storageBucket: "igotchu-3893e.firebasestorage.app",
+  messagingSenderId: "645793844479",
+  appId: "1:645793844479:web:0ae7f402e380f6743310ca"
 };
 const FIREBASE_READY = !FIREBASE_CONFIG.apiKey.startsWith("PASTE_");
 
